@@ -1,38 +1,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include "keys.h"
 
-#define THREADS 32
-#define BLOCKS 2
-#define NUM_KEYS 128
+// the following three are parameters get from cmd line
+int THREADS;        // e.g.  32
+int BLOCKS;         // e.g. 2
+int K, NUM_KEYS;       // 2^k
 
 // How many keys one thread should process
 // make sure that the number of keys is always larger than total number of threads
 // and also make sure its divisible, i.e NUM_KEYS % (THREADS*NUM_KEYS) = 0
-#define KEYS_PER_THREAD NUM_KEYS/(THREADS*BLOCKS)
+int KEYS_PER_THREAD;    // = NUM_KEYS/(THREADS*BLOCKS);
 
 
 void print_elapsed(clock_t start, clock_t stop) {
     double elapsed = ((double) (stop - start)) / CLOCKS_PER_SEC;
-    printf("Elapsed time: %.3fs\n", elapsed);
-}
-
-void print_keys(int *keys, int length) {
-    for (int i = 0; i < length; ++i) {
-        printf("%d ",  keys[i]);
-    }
-    printf("\n");
-}
-
-void generate_keys(int *keys, int length) {
-    srand(time(NULL));
-    for (int i = 0; i < length; ++i) {
-        keys[i] = rand() % NUM_KEYS;
-    }
+    printf("keys: %d, blocks: %d, threads: %d, time: %fs\n", K, BLOCKS, THREADS, elapsed);
 }
 
 __global__
-void bitonic_sort_step(int *dev_keys, int j, int k) {
+void bitonic_sort_step(int *dev_keys, int j, int k, int KEYS_PER_THREAD) {
     unsigned int i, ixj; /* Sorting partners: i and ixj */
     unsigned int tid = (threadIdx.x + blockDim.x * blockIdx.x) * KEYS_PER_THREAD;
     for(i = tid; i < tid+KEYS_PER_THREAD; i++) {
@@ -65,6 +53,9 @@ void bitonic_sort_step(int *dev_keys, int j, int k) {
  * Inplace bitonic sort using CUDA.
  */
 void bitonic_sort(int *keys) {
+    KEYS_PER_THREAD = NUM_KEYS/(THREADS*BLOCKS);
+
+
     int *dev_keys;
 
     cudaMalloc((void**) &dev_keys, NUM_KEYS*sizeof(int));
@@ -78,27 +69,33 @@ void bitonic_sort(int *keys) {
     for (k = 2; k <= NUM_KEYS; k <<= 1) {
         /* Minor step */
         for (j=k>>1; j>0; j=j>>1) {
-            bitonic_sort_step<<<blocks, threads>>>(dev_keys, j, k);
+            bitonic_sort_step<<<blocks, threads>>>(dev_keys, j, k, KEYS_PER_THREAD);
         }
     }
     cudaMemcpy(keys, dev_keys, NUM_KEYS*sizeof(int), cudaMemcpyDeviceToHost);
     cudaFree(dev_keys);
 }
 
-int main(void)
-{
-    clock_t start, stop;
+int main(int argc, char *argv[]) {
+    if(argc != 3) return -1;
+    BLOCKS = atoi(argv[1]);
+    THREADS = atoi(argv[2]);
 
-    int *keys = new int[NUM_KEYS];
-    generate_keys(keys, NUM_KEYS);
-    print_keys(keys, NUM_KEYS);
+    for(K = 16; K <= 24; K++) {
+        NUM_KEYS = 2 << (K-1);
 
-    start = clock();
-    bitonic_sort(keys);
-    stop = clock();
+        int *keys = new int[NUM_KEYS];
+        //uniform_keys(keys, NUM_KEYS, 0, 2<<30-1);
+        uniform_keys(keys, NUM_KEYS, 0, 255);
+        //print_keys(keys, NUM_KEYS);
 
-    print_elapsed(start, stop);
-    print_keys(keys, NUM_KEYS);
+        clock_t start = clock();
+        bitonic_sort(keys);
+        clock_t stop = clock();
 
-    delete keys;
+        print_elapsed(start, stop);
+        //print_keys(keys, NUM_KEYS);
+        delete keys;
+    }
+
 }
