@@ -36,7 +36,13 @@ void uniform_keys(int *keys, int num_keys, int min, int max) {
     }
 }
 
-void gaussian_keys(int *keys) {
+void gaussian_keys(int *keys, int num_keys) {
+    std::random_device rand_dev;
+    std::mt19937 generator(rand_dev());
+    std::normal_distribution<float>  dist(1<<30, 1<<20); 
+    for(int i = 0; i < num_keys; i++) {
+        keys[i] = (int) round(dist(generator));
+    }
 }
 
 

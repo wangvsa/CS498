@@ -76,7 +76,10 @@ void bitonic_sort(int *keys) {
     cudaFree(dev_keys);
 }
 
+
 int main(int argc, char *argv[]) {
+    printf("%d\n", 2<<31-1);
+
     if(argc != 3) return -1;
     BLOCKS = atoi(argv[1]);
     THREADS = atoi(argv[2]);
@@ -85,8 +88,9 @@ int main(int argc, char *argv[]) {
         NUM_KEYS = 2 << (K-1);
 
         int *keys = new int[NUM_KEYS];
-        //uniform_keys(keys, NUM_KEYS, 0, 2<<30-1);
-        uniform_keys(keys, NUM_KEYS, 0, 255);
+        //uniform_keys(keys, NUM_KEYS, 0, 2147483647);
+        //uniform_keys(keys, NUM_KEYS, 0, 255);
+        gaussian_keys(keys, NUM_KEYS);
         //print_keys(keys, NUM_KEYS);
 
         clock_t start = clock();
