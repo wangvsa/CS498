@@ -83,14 +83,14 @@ int main(int argc, char *argv[]) {
         NUM_KEYS = 2 << (K-1);
 
         int *keys = new int[NUM_KEYS];
-        //uniform_keys(keys, NUM_KEYS, 0, 2147483647);
+        uniform_keys(keys, NUM_KEYS, 0, 2147483647);
         //uniform_keys(keys, NUM_KEYS, 0, 255);
-        gaussian_keys(keys, NUM_KEYS);
+        //gaussian_keys(keys, NUM_KEYS);
         //print_keys(keys, NUM_KEYS);
 
         timer t;
         bitonic_sort(keys);
-        printf("keys: %d, blocks: %d, threads: %d, time: %fs\n", K, BLOCKS, THREADS, t.seconds_elapsed());
+        printf("keys: %d, blocks: %d, threads: %d, time(s): %f\n", K, BLOCKS, THREADS, t.seconds_elapsed());
 
         //print_keys(keys, NUM_KEYS);
         delete keys;
