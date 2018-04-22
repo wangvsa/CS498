@@ -1,0 +1,10 @@
+# Gaussian
+keys: 16, blocks: 2, threads: 32, time: 0.150000s
+keys: 17, blocks: 2, threads: 32, time: 0.080000s
+keys: 18, blocks: 2, threads: 32, time: 0.170000s
+keys: 19, blocks: 2, threads: 32, time: 0.330000s
+keys: 20, blocks: 2, threads: 32, time: 0.720000s
+keys: 21, blocks: 2, threads: 32, time: 1.550000s
+keys: 22, blocks: 2, threads: 32, time: 3.320000s
+keys: 23, blocks: 2, threads: 32, time: 7.210000s
+keys: 24, blocks: 2, threads: 32, time: 15.780000s

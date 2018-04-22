@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "keys.h"
+#include "timer.h"
 
 // the following three are parameters get from cmd line
 int THREADS;        // e.g.  32
@@ -13,11 +14,6 @@ int K, NUM_KEYS;       // 2^k
 // and also make sure its divisible, i.e NUM_KEYS % (THREADS*NUM_KEYS) = 0
 int KEYS_PER_THREAD;    // = NUM_KEYS/(THREADS*BLOCKS);
 
-
-void print_elapsed(clock_t start, clock_t stop) {
-    double elapsed = ((double) (stop - start)) / CLOCKS_PER_SEC;
-    printf("keys: %d, blocks: %d, threads: %d, time: %fs\n", K, BLOCKS, THREADS, elapsed);
-}
 
 __global__
 void bitonic_sort_step(int *dev_keys, int j, int k, int KEYS_PER_THREAD) {
@@ -78,7 +74,6 @@ void bitonic_sort(int *keys) {
 
 
 int main(int argc, char *argv[]) {
-    printf("%d\n", 2<<31-1);
 
     if(argc != 3) return -1;
     BLOCKS = atoi(argv[1]);
@@ -93,11 +88,10 @@ int main(int argc, char *argv[]) {
         gaussian_keys(keys, NUM_KEYS);
         //print_keys(keys, NUM_KEYS);
 
-        clock_t start = clock();
+        timer t;
         bitonic_sort(keys);
-        clock_t stop = clock();
+        printf("keys: %d, blocks: %d, threads: %d, time: %fs\n", K, BLOCKS, THREADS, t.seconds_elapsed());
 
-        print_elapsed(start, stop);
         //print_keys(keys, NUM_KEYS);
         delete keys;
     }
