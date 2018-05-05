@@ -1,4 +1,4 @@
-# 1 Gaussian
+# 1. Gaussian
 # 1.1 total threads: 64
 keys: 16, blocks: 2, threads: 32, time: 0.037097s
 keys: 17, blocks: 2, threads: 32, time: 0.081853s
@@ -218,3 +218,153 @@ keys: 22, blocks: 64, threads: 64, time(s): 0.254043
 keys: 23, blocks: 64, threads: 64, time(s): 0.617682
 keys: 24, blocks: 64, threads: 64, time(s): 1.343316
 
+
+
+===========================================================
+
+DGX
+# 1. Gaussian
+
+# 2. Uniform 0~2^31-1
+# 2.1 total threads: 64
+keys: 16, blocks: 1, threads: 64, time(s): 0.031190
+keys: 17, blocks: 1, threads: 64, time(s): 0.067387
+keys: 18, blocks: 1, threads: 64, time(s): 0.134743
+keys: 19, blocks: 1, threads: 64, time(s): 0.273910
+keys: 20, blocks: 1, threads: 64, time(s): 0.595405
+keys: 21, blocks: 1, threads: 64, time(s): 1.401331
+keys: 22, blocks: 1, threads: 64, time(s): 3.047188
+keys: 23, blocks: 1, threads: 64, time(s): 6.558296
+keys: 24, blocks: 1, threads: 64, time(s): 14.224049
+# 2.2 total threads: 128
+keys: 16, blocks: 2, threads: 64, time(s): 0.014110
+keys: 17, blocks: 2, threads: 64, time(s): 0.030047
+keys: 18, blocks: 2, threads: 64, time(s): 0.064575
+keys: 19, blocks: 2, threads: 64, time(s): 0.138654
+keys: 20, blocks: 2, threads: 64, time(s): 0.300944
+keys: 21, blocks: 2, threads: 64, time(s): 0.711212
+keys: 22, blocks: 2, threads: 64, time(s): 1.529378
+keys: 23, blocks: 2, threads: 64, time(s): 3.313567
+keys: 24, blocks: 2, threads: 64, time(s): 7.115211
+# 2.3 total threads: 256
+keys: 16, blocks: 4, threads: 64, time(s): 0.007720
+keys: 17, blocks: 4, threads: 64, time(s): 0.015703
+keys: 18, blocks: 4, threads: 64, time(s): 0.033425
+keys: 19, blocks: 4, threads: 64, time(s): 0.071232
+keys: 20, blocks: 4, threads: 64, time(s): 0.153280
+keys: 21, blocks: 4, threads: 64, time(s): 0.362187
+keys: 22, blocks: 4, threads: 64, time(s): 0.778880
+keys: 23, blocks: 4, threads: 64, time(s): 1.668443
+keys: 24, blocks: 4, threads: 64, time(s): 3.629255
+# 2.4 total threads: 512
+keys: 16, blocks: 8, threads: 64, time(s): 0.004528
+keys: 17, blocks: 8, threads: 64, time(s): 0.009105
+keys: 18, blocks: 8, threads: 64, time(s): 0.018411
+keys: 19, blocks: 8, threads: 64, time(s): 0.037113
+keys: 20, blocks: 8, threads: 64, time(s): 0.079260
+keys: 21, blocks: 8, threads: 64, time(s): 0.184688
+keys: 22, blocks: 8, threads: 64, time(s): 0.403743
+keys: 23, blocks: 8, threads: 64, time(s): 0.851766
+keys: 24, blocks: 8, threads: 64, time(s): 1.821936
+# 2.5 total threads: 1024
+keys: 16, blocks: 16, threads: 64, time(s): 0.002909
+keys: 17, blocks: 16, threads: 64, time(s): 0.005625
+keys: 18, blocks: 16, threads: 64, time(s): 0.009816
+keys: 19, blocks: 16, threads: 64, time(s): 0.020334
+keys: 20, blocks: 16, threads: 64, time(s): 0.041404
+keys: 21, blocks: 16, threads: 64, time(s): 0.095302
+keys: 22, blocks: 16, threads: 64, time(s): 0.204171
+keys: 23, blocks: 16, threads: 64, time(s): 0.441434
+keys: 24, blocks: 16, threads: 64, time(s): 0.937255
+# 2.6 total threads: 2048
+keys: 16, blocks: 32, threads: 64, time(s): 0.002093
+keys: 17, blocks: 32, threads: 64, time(s): 0.003176
+keys: 18, blocks: 32, threads: 64, time(s): 0.005714
+keys: 19, blocks: 32, threads: 64, time(s): 0.011351
+keys: 20, blocks: 32, threads: 64, time(s): 0.022371
+keys: 21, blocks: 32, threads: 64, time(s): 0.050259
+keys: 22, blocks: 32, threads: 64, time(s): 0.107197
+keys: 23, blocks: 32, threads: 64, time(s): 0.228930
+keys: 24, blocks: 32, threads: 64, time(s): 0.490984
+# 2.7 total threads: 4096
+keys: 16, blocks: 64, threads: 64, time(s): 0.001845
+keys: 17, blocks: 64, threads: 64, time(s): 0.002803
+keys: 18, blocks: 64, threads: 64, time(s): 0.003817
+keys: 19, blocks: 64, threads: 64, time(s): 0.006836
+keys: 20, blocks: 64, threads: 64, time(s): 0.013618
+keys: 21, blocks: 64, threads: 64, time(s): 0.029133
+keys: 22, blocks: 64, threads: 64, time(s): 0.060287
+keys: 23, blocks: 64, threads: 64, time(s): 0.146430
+keys: 24, blocks: 64, threads: 64, time(s): 0.282273
+
+# 3. Uniform 0~255
+# 3.1 total threads: 64
+keys: 16, blocks: 1, threads: 64, time(s): 0.029194
+keys: 17, blocks: 1, threads: 64, time(s): 0.062718
+keys: 18, blocks: 1, threads: 64, time(s): 0.133302
+keys: 19, blocks: 1, threads: 64, time(s): 0.261212
+keys: 20, blocks: 1, threads: 64, time(s): 0.553738
+keys: 21, blocks: 1, threads: 64, time(s): 1.305417
+keys: 22, blocks: 1, threads: 64, time(s): 2.836053
+keys: 23, blocks: 1, threads: 64, time(s): 6.117302
+keys: 24, blocks: 1, threads: 64, time(s): 13.243443
+# 3.2 total threads: 128
+keys: 16, blocks: 2, threads: 64, time(s): 0.013316
+keys: 17, blocks: 2, threads: 64, time(s): 0.027875
+keys: 18, blocks: 2, threads: 64, time(s): 0.059818
+keys: 19, blocks: 2, threads: 64, time(s): 0.129437
+keys: 20, blocks: 2, threads: 64, time(s): 0.279836
+keys: 21, blocks: 2, threads: 64, time(s): 0.662724
+keys: 22, blocks: 2, threads: 64, time(s): 1.424181
+keys: 23, blocks: 2, threads: 64, time(s): 3.082012
+keys: 24, blocks: 2, threads: 64, time(s): 6.629492
+# 3.3 total threads: 256
+keys: 16, blocks: 4, threads: 64, time(s): 0.007400
+keys: 17, blocks: 4, threads: 64, time(s): 0.014847
+keys: 18, blocks: 4, threads: 64, time(s): 0.031145
+keys: 19, blocks: 4, threads: 64, time(s): 0.066440
+keys: 20, blocks: 4, threads: 64, time(s): 0.142703
+keys: 21, blocks: 4, threads: 64, time(s): 0.336872
+keys: 22, blocks: 4, threads: 64, time(s): 0.724997
+keys: 23, blocks: 4, threads: 64, time(s): 1.553212
+keys: 24, blocks: 4, threads: 64, time(s): 3.352771
+# 3.4 total threads: 512
+keys: 16, blocks: 8, threads: 64, time(s): 0.004456
+keys: 17, blocks: 8, threads: 64, time(s): 0.008864
+keys: 18, blocks: 8, threads: 64, time(s): 0.017247
+keys: 19, blocks: 8, threads: 64, time(s): 0.034913
+keys: 20, blocks: 8, threads: 64, time(s): 0.074148
+keys: 21, blocks: 8, threads: 64, time(s): 0.172068
+keys: 22, blocks: 8, threads: 64, time(s): 0.372030
+keys: 23, blocks: 8, threads: 64, time(s): 0.796287
+keys: 24, blocks: 8, threads: 64, time(s): 1.699072
+# 3.5 total threads: 1024
+keys: 16, blocks: 16, threads: 64, time(s): 0.003074
+keys: 17, blocks: 16, threads: 64, time(s): 0.004902
+keys: 18, blocks: 16, threads: 64, time(s): 0.009378
+keys: 19, blocks: 16, threads: 64, time(s): 0.018829
+keys: 20, blocks: 16, threads: 64, time(s): 0.039099
+keys: 21, blocks: 16, threads: 64, time(s): 0.089479
+keys: 22, blocks: 16, threads: 64, time(s): 0.191357
+keys: 23, blocks: 16, threads: 64, time(s): 0.418365
+keys: 24, blocks: 16, threads: 64, time(s): 0.873216
+# 3.6 total threads: 2048
+keys: 16, blocks: 32, threads: 64, time(s): 0.002159
+keys: 17, blocks: 32, threads: 64, time(s): 0.003140
+keys: 18, blocks: 32, threads: 64, time(s): 0.005551
+keys: 19, blocks: 32, threads: 64, time(s): 0.010622
+keys: 20, blocks: 32, threads: 64, time(s): 0.021310
+keys: 21, blocks: 32, threads: 64, time(s): 0.047917
+keys: 22, blocks: 32, threads: 64, time(s): 0.101014
+keys: 23, blocks: 32, threads: 64, time(s): 0.215069
+keys: 24, blocks: 32, threads: 64, time(s): 0.461123
+# 3.7 total threads: 4096
+keys: 16, blocks: 64, threads: 64, time(s): 0.001577
+keys: 17, blocks: 64, threads: 64, time(s): 0.002231
+keys: 18, blocks: 64, threads: 64, time(s): 0.003611
+keys: 19, blocks: 64, threads: 64, time(s): 0.006398
+keys: 20, blocks: 64, threads: 64, time(s): 0.012280
+keys: 21, blocks: 64, threads: 64, time(s): 0.028858
+keys: 22, blocks: 64, threads: 64, time(s): 0.055247
+keys: 23, blocks: 64, threads: 64, time(s): 0.116734
+keys: 24, blocks: 64, threads: 64, time(s): 0.246526
